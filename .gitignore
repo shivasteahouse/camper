@@ -55,3 +55,8 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# local settings
+camper/settings/local.py
+
+db/development.sqlite3
