@@ -1,5 +1,6 @@
 
 # The Camper Project #
+[![Build Status](https://travis-ci.org/shivasteahouse/camper.svg)](https://travis-ci.org/shivasteahouse/camper)
 
 ## About ##
 
