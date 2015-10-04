@@ -4,6 +4,9 @@
 # Django stuff
 Django>=1.8
 
+# App server
+gunicorn
+
 # Templates
 django_compressor
 
@@ -30,3 +33,6 @@ django-debug-toolbar
 
 # Feature testing
 #django-waffle
+
+# environment
+django-environ
