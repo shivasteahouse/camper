@@ -1,13 +1,16 @@
 db:
   image: postgres
+  env_file: secrets.env
+  # TODO mount volume - PGDATA or /var/lib/postgresql/data
 web:
   build: .
-  command: gunicorn  -w 3 -b 0.0.0.0 camper.wsgi
+  command: gunicorn -w 3 -b 0.0.0.0 camper.wsgi
   restart: always
   ports:
     - "8000:8000"
   links:
     - db
   env_file: secrets.env
-# TODO worker
+# TODO Celery worker
+# TODO RabbitMQ
 # TODO ngnix

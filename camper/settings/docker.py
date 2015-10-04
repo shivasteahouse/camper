@@ -5,8 +5,12 @@ This is the docker settings, it uses environment variables for sensitive/changab
 from . import base
 
 import environ
-env = environ.Env(DEBUG=(bool, False),)
-# TODO postgres, email...
+env = environ.Env(
+    DEBUG=(bool, False),
+    POSTGRES_PASSWORD=(str, 'temp'),
+    POSTGRES_USER=(str, 'camper'),
+)
+# TODO email, Celery
 
 # To extend any settings from settings/base.py here's an example.
 # If you don't need to extend any settings from base.py, you do not need
@@ -15,11 +19,11 @@ env = environ.Env(DEBUG=(bool, False),)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db/development.sqlite3',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'camper',
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': 'db', # docker-compose linked
         'PORT': '',
         #'OPTIONS': {
         #    'init_command': 'SET storage_engine=InnoDB',
