@@ -1,0 +1,13 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: gunicorn  -w 3 -b 0.0.0.0 camper.wsgi
+  restart: always
+  ports:
+    - "8000:8000"
+  links:
+    - db
+  env_file: secrets.env
+# TODO worker
+# TODO ngnix

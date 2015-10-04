@@ -13,7 +13,38 @@ Describe your project here.
 
 ## Installation ##
 
-Fill out with installation instructions for your project.
+### Prerequisites ###
+This required *docker*, *docker-machine* and *docker-compose* installed on your local machine. More informations on [Docker's website](https://docs.docker.com/installation/mac/)
+
+### Local ###
+```
+# creates a local host for docker containers, only do once
+docker-machine create -d virtualbox local
+
+# create your config secrets
+cp secrets.env.sample secrets.env
+
+# load the docker env
+eval "$(docker-machine env local)"
+
+# build web image
+docker-compose build
+
+docker-compose up -d
+```
+
+### Digital Ocean ###
+```
+# creates the droplet, only do once
+docker-machine create --driver digitalocean --digitalocean-size "512mb" --digvitalocean-backups --digitalocean-region "sgp1" --digitalocean-access-token ACC_TOKEN camper
+
+# create your config secrets
+cp secrets.env.sample secrets.env
+
+eval "$(docker-machine env camper)"
+docker-compose build
+docker-compose up -d
+```
 
 
 License

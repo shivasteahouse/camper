@@ -58,5 +58,6 @@ target/
 
 # local settings
 camper/settings/local.py
+secrets.env
 
 db/development.sqlite3
