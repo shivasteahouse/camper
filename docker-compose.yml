@@ -2,6 +2,9 @@ db:
   image: postgres
   env_file: secrets.env
   # TODO mount volume - PGDATA or /var/lib/postgresql/data
+rabbitmq:
+  image: rabbitmq
+  env_file: secrets.env
 web:
   build: .
   command: gunicorn -w 3 -b 0.0.0.0 camper.wsgi
@@ -10,7 +13,8 @@ web:
     - "8000:8000"
   links:
     - db
+    - rabbitmq
   env_file: secrets.env
+
 # TODO Celery worker
-# TODO RabbitMQ
 # TODO ngnix

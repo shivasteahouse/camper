@@ -7,8 +7,10 @@ from . import base
 import environ
 env = environ.Env(
     DEBUG=(bool, False),
-    POSTGRES_PASSWORD=(str, 'temp'),
     POSTGRES_USER=(str, 'camper'),
+    POSTGRES_PASSWORD=(str, 'temp'),
+    RABBITMQ_DEFAULT_USER=(str, 'camper'),
+    RABBITMQ_DEFAULT_PASS=(str, 'temp'),
 )
 # TODO email, Celery
 
@@ -72,12 +74,12 @@ SECRET_KEY = env('SECRET_KEY')
 
 # Uncomment these to activate and customize Celery:
 # CELERY_ALWAYS_EAGER = False  # required to activate celeryd
-# BROKER_HOST = 'localhost'
-# BROKER_PORT = 5672
-# BROKER_USER = 'django'
-# BROKER_PASSWORD = 'django'
+BROKER_HOST = 'rabbitmq'  # docker-compose linked
+BROKER_PORT = 5672
+BROKER_USER = env('RABBITMQ_DEFAULT_USER')
+BROKER_PASSWORD = env('RABBITMQ_DEFAULT_PASS')
 # BROKER_VHOST = 'django'
-# CELERY_RESULT_BACKEND = 'amqp'
+CELERY_RESULT_BACKEND = 'amqp'
 
 ## Log settings
 
