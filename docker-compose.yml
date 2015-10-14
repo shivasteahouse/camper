@@ -15,10 +15,18 @@ worker: &app_base
   env_file: secrets.env
   environment:
     - C_FORCE_ROOT=true
-web:
+app:
   <<: *app_base
   command: gunicorn -w 3 -b 0.0.0.0 camper.wsgi
+  volumes:
+    - /code/static
   ports:
     - "8000:8000"
-
-# TODO ngnix
+nginx:
+  build: nginx
+  ports:
+    - "80:80"
+  links:
+    - app
+  volumes_from:
+    - app

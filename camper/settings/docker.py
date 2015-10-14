@@ -72,6 +72,8 @@ ALLOWED_HOSTS = []
 # the secret key from an environment variable or a file instead.
 SECRET_KEY = env('SECRET_KEY')
 
+STATIC_URL = '/static/'
+
 # Uncomment these to activate and customize Celery:
 # CELERY_ALWAYS_EAGER = False  # required to activate celeryd
 BROKER_URL = "amqp://{0}:{1}@rabbitmq:5672//".format(env('RABBITMQ_DEFAULT_USER'), env('RABBITMQ_DEFAULT_PASS'))
