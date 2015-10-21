@@ -52,6 +52,8 @@ INSTALLED_APPS = (
 
     # Application base, containing global templates.
     'base',
+    'camps',
+    'members'
 
     # Local apps, referenced via appname
 )
