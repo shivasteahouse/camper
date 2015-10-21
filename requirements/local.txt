@@ -17,3 +17,7 @@ coverage
 pep8
 pyflakes
 pylint
+
+# extras
+django-extensions
+ipython

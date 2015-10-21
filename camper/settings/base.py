@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'djcelery',
     'debug_toolbar',
     'compressor',
+    'django_extensions',
 
     # Application base, containing global templates.
     'base',
