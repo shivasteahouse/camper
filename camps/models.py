@@ -1,6 +1,7 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
+from django.core.urlresolvers import reverse
 
 
 class Camp(models.Model):
@@ -14,21 +15,29 @@ class Camp(models.Model):
         verbose_name = 'Camp'
         verbose_name_plural = 'Camps'
 
-    def __unicode__(self):
+    def get_absolute_url(self):
+        return reverse('camp_detail', args=[str(self.id)])
+
+    def __str__(self):
         return self.name
 
 
-class CampYear(models.Model):
+def get_year_choices():
+    # This code from http://stackoverflow.com/questions/1517474
     YEAR_CHOICES = []
-    for r in range(2016, (datetime.datetime.now().year+1)):
+    for r in range(datetime.datetime.now().year, (datetime.datetime.now().year+3)):
         YEAR_CHOICES.append((r,r))
+    return YEAR_CHOICES
 
-    year = models.IntegerField('year', choices=YEAR_CHOICES, default=datetime.datetime.now().year)
+
+class CampYear(models.Model):
+
+    year = models.IntegerField('year', choices=get_year_choices(), default=datetime.datetime.now().year)
     camp = models.ForeignKey(Camp, related_name="years")
 
     class Meta:
         verbose_name = 'CampYear'
         verbose_name_plural = 'CampYears'
 
-    def __unicode__(self):
+    def __str__(self):
         return '{} {}'.format(self.camp, self.year)

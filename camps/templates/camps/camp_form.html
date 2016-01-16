@@ -1,0 +1,22 @@
+{% extends 'camps/base.html' %}
+{% load bootstrap3 %}
+
+{% block page_controls %}
+{# <button class='btn'>Hello controls</button> #}
+{% endblock %}
+
+{% block content_header %}
+Create a new camp
+{% endblock %}
+
+{% block main_content %}
+<form action="{{ request.path }}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            Submit
+        </button>
+    {% endbuttons %}
+</form>
+{% endblock %}

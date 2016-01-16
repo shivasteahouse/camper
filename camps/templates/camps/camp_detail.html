@@ -1,0 +1,33 @@
+{% extends 'camps/base.html' %}
+{% load bootstrap3 %}
+
+{% block page_controls %}
+<div class="btn-group" role="group">
+  <a href="{% url 'camp_update' camp.id %}" type="button" class="btn btn-default">Edit Camp</a>
+</div>
+{% endblock %}
+
+{% block content_header %}
+Check out {{ camp.name }}
+{% endblock %}
+
+{% block main_content %}
+
+<div class="well">
+    <span class="lead">Camp description</span>
+    <p>{{camp.description}}</p>
+</div>
+{% for year in camp.years.all %}
+<div class="row">
+    <div class="camp-year col-sm-12">
+        <span class="lead">{{ year.camp.name }} {{year.year}}</span>
+        <p>
+            <h4>Members</h4>
+            {% for member in year.members.all %}
+                {{ member }}
+            {% endfor %}
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

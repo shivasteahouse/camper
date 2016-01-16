@@ -36,3 +36,7 @@ django-debug-toolbar
 
 # environment
 django-environ
+
+django-bootstrap3==6.2.2
+
+django-braces==1.8.1

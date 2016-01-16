@@ -1,0 +1,22 @@
+{% extends '_layouts/base.html' %}
+{% load bootstrap3 %}
+{# This template provides a common page layout for normal content #}
+
+{% block content %}
+<div class="container">
+    {% if messages %}
+    {% bootstrap_messages %}
+    {% endif %}
+
+    <span class="pull-right">
+        {% block page_controls %}
+        {% endblock %}
+    </span>
+    <legend>
+        {% block content_header %}
+        {% endblock %}
+    </legend>
+    {% block main_content %}
+    {% endblock %}
+</div>
+{% endblock %}
