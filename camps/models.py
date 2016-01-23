@@ -38,6 +38,7 @@ class CampYear(models.Model):
     class Meta:
         verbose_name = 'CampYear'
         verbose_name_plural = 'CampYears'
+        get_latest_by = 'year'
 
     def __str__(self):
         return '{} {}'.format(self.camp, self.year)

@@ -1,0 +1,30 @@
+{% extends 'camps/base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content_header %}
+Check out some camps
+{% endblock %}
+
+{% block main_content %}
+
+<div class="well">
+    <span class="lead">Camp List</span>
+    <p>{{camp.description}}</p>
+</div>
+{% for camp in object_list %}
+<div class="row">
+    <div class="camp-year col-sm-12">
+        <span class="lead">{{ camp.name }} {{ camp.years.latest }}</span>
+        {% if camp.years.latest.members.exists %}
+        <p>
+            <h4>Members</h4>
+            {% for member in camp.years.latest.members.all %}
+                {{ member }}
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

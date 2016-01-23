@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import CampYearForm, CampForm
 from .models import Camp, CampYear
@@ -8,9 +8,12 @@ from .models import Camp, CampYear
 from base.mixins import CamperBaseMixin, AuthorshipFormViewMixin
 
 
-class CampBaseMixin(SuccessMessageMixin, AuthorshipFormViewMixin):
-    form_class = CampForm
+class CampBaseMixin(CamperBaseMixin):
     model = Camp
+
+
+class CampEditBaseMixin(CampBaseMixin, SuccessMessageMixin, AuthorshipFormViewMixin):
+    form_class = CampForm
     template_name = 'camps/camp_form.html'
     success_message = "Your camp %(name)s was %(verb)sed successfully"
 
@@ -21,7 +24,7 @@ class CampBaseMixin(SuccessMessageMixin, AuthorshipFormViewMixin):
         )
 
 
-class CampCreateView(CampBaseMixin, CreateView):
+class CampCreateView(CampEditBaseMixin, CreateView):
     success_verb = 'create'
 
     def form_valid(self, form):
@@ -32,7 +35,7 @@ class CampCreateView(CampBaseMixin, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class CampUpdateView(CampBaseMixin, UpdateView):
+class CampUpdateView(CampEditBaseMixin, UpdateView):
     success_verb = 'edit'
 
     def form_valid(self, form):
@@ -40,10 +43,12 @@ class CampUpdateView(CampBaseMixin, UpdateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class CampDetailView(DetailView):
+class CampDetailView(CampBaseMixin, DetailView):
     template_name = 'camps/camp_detail.html'
     model = Camp
 
 
-
+class CampListView(CampBaseMixin, ListView):
+    template_name = 'camps/camp_list.html'
+    model = Camp
 
