@@ -2,6 +2,7 @@ from django import forms
 from .models import Camp, CampYear, get_year_choices
 import datetime
 
+
 class CampForm(forms.ModelForm):
 
     class Meta:
@@ -17,8 +18,6 @@ class CampForm(forms.ModelForm):
                 choices=get_year_choices(),
                 initial=datetime.datetime.now().year
             )
-
-
 
 
 class CampYearForm(forms.ModelForm):

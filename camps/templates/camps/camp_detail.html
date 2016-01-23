@@ -4,6 +4,7 @@
 {% block page_controls %}
 <div class="btn-group" role="group">
   <a href="{% url 'camp_update' camp.id %}" type="button" class="btn btn-default">Edit Camp</a>
+  <a href="{% url 'member_invite' camp.id camp.years.latest.year %}" type="button" class="btn btn-default">Invite members</a>
 </div>
 {% endblock %}
 
@@ -14,9 +15,10 @@ Check out {{ camp.name }}
 {% block main_content %}
 
 <div class="well">
-    <span class="lead">Camp description</span>
+    <span class="lead">Camp description -- {{camp.years.latest.year }}</span>
     <p>{{camp.description}}</p>
 </div>
+
 {% for year in camp.years.all %}
 <div class="row">
     <div class="camp-year col-sm-12">

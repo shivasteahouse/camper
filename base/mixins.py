@@ -1,8 +1,13 @@
 from braces.views import LoginRequiredMixin, MultiplePermissionsRequiredMixin
 
 
-class CamperBaseMixin(LoginRequiredMixin, MultiplePermissionsRequiredMixin):
+class CamperBaseMixin(object):
     pass
+
+
+## Uncomment this and delete previous to enable login and permissions required checks
+# class CamperBaseMixin(LoginRequiredMixin, MultiplePermissionsRequiredMixin):
+#     pass
 
 
 class AuthorshipFormViewMixin(object):

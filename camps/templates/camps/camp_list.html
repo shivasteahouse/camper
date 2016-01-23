@@ -15,7 +15,9 @@ Check out some camps
 {% for camp in object_list %}
 <div class="row">
     <div class="camp-year col-sm-12">
-        <span class="lead">{{ camp.name }} {{ camp.years.latest }}</span>
+        <span class="lead">
+            <a href="{% url 'camp_detail' camp.pk %}">{{ camp.name }}</a> {{ camp.years.latest.year }}
+        </span>
         {% if camp.years.latest.members.exists %}
         <p>
             <h4>Members</h4>

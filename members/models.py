@@ -16,7 +16,7 @@ class Membership(models.Model):
     def camp(self):
         return self.year.camp
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.first_name
 
 
@@ -50,10 +50,11 @@ class MemberInvitation(models.Model):
     class Meta:
         verbose_name = 'MemberInvitation'
         verbose_name_plural = 'MemberInvitations'
+        unique_together = ['campyear', 'recipient_email']
 
-    def get_sender(self): # A workaround for the post_save receiver which also uses 'sender' as a keyword
+    def get_sender(self):
         return self.sender
 
-    def __unicode__(self):
+    def __str__(self):
         return "Invitation to {} to join camp {} from {}".format(self.recipient_email, self.campyear, self.sender)
 

@@ -40,3 +40,5 @@ django-environ
 django-bootstrap3==6.2.2
 
 django-braces==1.8.1
+
+django-extra-views==0.7.1

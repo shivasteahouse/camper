@@ -39,6 +39,7 @@ class CampYear(models.Model):
         verbose_name = 'CampYear'
         verbose_name_plural = 'CampYears'
         get_latest_by = 'year'
+        unique_together = ('year', 'camp')
 
     def __str__(self):
         return '{} {}'.format(self.camp, self.year)
