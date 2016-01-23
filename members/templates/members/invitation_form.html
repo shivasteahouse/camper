@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content_header %}
-Invite new members to {{ campyear }}
+Invite some awesome people to {{ campyear }}
 {% endblock %}
 
 {% block main_content %}
@@ -14,10 +14,18 @@ Invite new members to {{ campyear }}
             <form action="{{ request.path }}" method="post" class="form">
                 {% csrf_token %}
                 {{ formset.management_form }}
+                <table class="table">
+                <tr>
+                    <th>Recipient Email</th>
+                    <th>Permissions</th>
+                </tr>
                 {% for form in formset %}
-                <h4>Invite Someone Awesome</h4>
-                {% bootstrap_form form %}
+                <tr>
+                    <td>{% bootstrap_field form.recipient_email %}</td>
+                    <td>{% bootstrap_field form.permissions %}</td>
+                </tr>
                 {% endfor %}
+                </table>
                 {% buttons %}
                     <button type="submit" class="btn btn-primary">
                         Submit

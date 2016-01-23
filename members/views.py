@@ -24,6 +24,8 @@ class MemberInviteView(CamperBaseMixin, InlineFormSetView):
     template_name = 'members/invitation_form.html'
 
     def formset_valid(self, formset):
+        # TODO Something needs to happen when an invitation is saved ... like maybe sending an email to the recipient ;).
+
         campyear = get_object_or_404(CampYear, camp_id=self.kwargs.get('pk'), year=self.kwargs.get('year'))
         invitations = formset.save(commit=False)
         for invitation in invitations:
