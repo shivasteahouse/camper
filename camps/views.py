@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import CampYearForm, CampForm

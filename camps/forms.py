@@ -7,7 +7,7 @@ class CampForm(forms.ModelForm):
 
     class Meta:
         model = Camp
-        fields = ['name', 'description']
+        fields = ['event', 'name', 'description']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -23,12 +23,14 @@ Check out {{ camp.name }}
 <div class="row">
     <div class="camp-year col-sm-12">
         <span class="lead">{{ year.camp.name }} {{year.year}}</span>
+        {% if year.members.all %}
         <p>
             <h4>Members</h4>
             {% for member in year.members.all %}
                 {{ member }}
             {% endfor %}
         </p>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
